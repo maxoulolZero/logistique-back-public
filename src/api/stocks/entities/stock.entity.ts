@@ -7,24 +7,12 @@ export class Stock {
   id: number;
 
   @Column()
-  code_produit: string;
+  name: string;
 
   @Column()
-  famille_produit: string;
-
-  @Column()
-  description_produit: string;
-
-  @Column()
-  quantity_min: number;
-
-  @Column('float')
-  packaging: number;
+  quantity: number;
 
   @Column('float')
   prix: number;
-
-  @Column({default: 0})
-  stock_disponible: number;  
 
 }

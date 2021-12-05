@@ -1,9 +1,9 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Logger } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Logger, ParseIntPipe } from '@nestjs/common';
 import { StocksService } from './stocks.service';
 import { CreateStockDto } from './dto/create-stock.dto';
 import { UpdateStockDto } from './dto/update-stock.dto';
 
-@Controller('stocks')
+@Controller('')
 export class StocksController {
 
   private readonly logger = new Logger(StocksController.name);
@@ -23,19 +23,19 @@ export class StocksController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id', ParseIntPipe) id: number) {
     this.logger.log('Fetching one stock with ID : ' + id);
     return this.stocksService.findOne(+id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateStockDto: UpdateStockDto) {
+  update(@Param('id', ParseIntPipe) id: number, @Body() updateStockDto: UpdateStockDto) {
     this.logger.log(`Updating stock : ${id} with new fields : ${JSON.stringify(updateStockDto)}`);
     return this.stocksService.update(+id, updateStockDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  remove(@Param('id', ParseIntPipe) id: number) {
     this.logger.log('Removing stock : ' + id);
     return this.stocksService.remove(+id);
   }

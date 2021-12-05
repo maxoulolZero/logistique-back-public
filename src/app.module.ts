@@ -7,6 +7,7 @@ import { StocksModule } from './api/stocks/stocks.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
+      isGlobal: true,
       validationSchema: Joi.object({
         PGHOST: Joi.string().required(),
         POSTGRES_PORT: Joi.number().required(),
