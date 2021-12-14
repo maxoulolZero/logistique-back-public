@@ -10,6 +10,12 @@ const DEFAULT_HTTP_PORT = '80';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
+  
+  app.enableCors({
+    origin: '*',
+    allowedHeaders: '*',
+  });
+
   app.useGlobalPipes(new ValidationPipe({
     transform: true
   }));
